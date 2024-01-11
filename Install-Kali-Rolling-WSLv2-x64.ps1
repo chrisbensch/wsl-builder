@@ -8,10 +8,10 @@ Param (
 # create staging directory if it does not exists
 if (-Not (Test-Path -Path .\staging)) { $dir = mkdir .\staging }
 
-curl.exe -L -o .\staging\ubuntuLTS.appx https://aka.ms/wslubuntu2204
+curl.exe -L -o .\staging\kali.appx https://aka.ms/wsl-kali-linux-new
 
-Move-Item .\staging\ubuntuLTS.appx .\staging\$wslName.zip
-#Copy-Item .\staging\ubuntuLTS.appx .\staging\$wslName.zip
+Move-Item .\staging\kali.appx .\staging\$wslName.zip
+#Copy-Item .\staging\kali.appx .\staging\$wslName.zip
 Expand-Archive .\staging\$wslName.zip .\staging\$wslName
 
 # Updated for multi-arch builds
@@ -41,9 +41,12 @@ wsl -d $wslName -u root bash -ic "./scripts/config/system/createUser.sh $usernam
 # ensure WSL Distro is restarted when first used with user account
 wsl -t $wslName
 
-#if ($installAllSoftware -ieq $true) {
-#    wsl -d $wslName -u root bash -ic "./scripts/config/system/sudoNoPasswd.sh $username"
-#    wsl -d $wslName -u root bash -ic ./scripts/install/installBasePackages.sh
-#    wsl -d $wslName -u $username bash -ic ./scripts/install/installAllSoftware.sh
-#    wsl -d $wslName -u root bash -ic "./scripts/config/system/sudoWithPasswd.sh $username"
-#}
+if ($installAllSoftware -ieq $true) {
+    wsl -d $wslName -u root bash -ic "./scripts/config/system/sudoNoPasswd.sh $username"
+    wsl -d $wslName -u root bash -ic ./scripts/install/installBasePackages.sh
+    wsl -d $wslName -u $username bash -ic ./scripts/install/installAllSoftware.sh
+    wsl -d $wslName -u root bash -ic "./scripts/config/system/sudoWithPasswd.sh $username"
+
+}
+
+wsl -t $wslName
