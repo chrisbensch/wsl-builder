@@ -26,15 +26,19 @@ def gen_volatility_data():
 def main():
     #sg.theme('TanBlue')
 
+    cb=[]
+    cb.append(sg.Checkbox("Full Software Install", key='s1'))
+
     layout = [
-        [sg.Text('Distro Given Name', size=(15, 1), justification='right'),
-         sg.InputText('SIFT/Kali', key='case')],
+        [sg.Text('Distro Custom Name', size=(15, 1), justification='right'),
+         sg.InputText('Ubuntu/SIFT/Kali', key='case')],
         [sg.Text('Install Directory', size=(15, 1), justification='right'),
-         sg.InputText('C:\Tools\Kali', key='dskimg'), sg.FileBrowse()],
+         sg.InputText('C:\Tools\<distro>', key='dskimg'), sg.FileBrowse()],
         [sg.Text('Username', size=(15, 1), justification='right'),
          sg.InputText('sift/attacker', key='memimg'), sg.FileBrowse()],
 
-        [sg.Checkbox('Full Software Install', key='s1')],
+        #[sg.Checkbox('Full Software Install', key='s1')],
+        [cb],
 
         [sg.Text(' ' * 40), sg.Button('Go!'),
          sg.Button('Exit')]

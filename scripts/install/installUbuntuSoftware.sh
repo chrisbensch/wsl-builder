@@ -39,6 +39,6 @@ setUserName "$(whoami)"
 #bash ${DIR_ME}/installKvm.sh
 
 # clean-up
-sudo apt autoremove
+sudo apt -y autoremove
 
-bash ${DIR_ME}/../report/listVersions.sh
+#bash ${DIR_ME}/../report/listVersions.sh

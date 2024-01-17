@@ -1,3 +1,5 @@
+#  powershell -exec bypass .\Install-UbuntuWSLv2-22.04.ps1 SIFT C:\Tools\SIFT sift true
+
 Param (
 [Parameter(Mandatory=$True)][ValidateNotNull()][string]$wslName,
 [Parameter(Mandatory=$True)][ValidateNotNull()][string]$wslInstallationPath,
@@ -44,7 +46,7 @@ wsl -t $wslName
 if ($installAllSoftware -ieq $true) {
     wsl -d $wslName -u root bash -ic "./scripts/config/system/sudoNoPasswd.sh $username"
     wsl -d $wslName -u root bash -ic ./scripts/install/installBasePackages.sh
-    wsl -d $wslName -u $username bash -ic ./scripts/install/installAllSoftware.sh
+    wsl -d $wslName -u $username bash -ic ./scripts/install/installUbuntuSoftware.sh
     wsl -d $wslName -u root bash -ic "./scripts/config/system/sudoWithPasswd.sh $username"
 
 }

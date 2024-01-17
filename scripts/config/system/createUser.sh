@@ -29,6 +29,7 @@ createMainUser () {
 
   # ensure no password is set
   passwd -d ${USERNAME}
+  touch /home/${USERNAME}/.hushlogin
 }
 createMainUser
 

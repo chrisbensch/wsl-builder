@@ -67,6 +67,6 @@ modifyWslConf () {
   sudo cp ${DIR_INSTALL_UTILS}/../config/system/wsl.conf /etc/wsl.conf
   sudo echo "[user]" >> /etc/wsl.conf
   sudo echo "default=${USERNAME}" >> /etc/wsl.conf
-  sed -i 's/\r$//' /etc/wsl.conf
-  touch /home/${USERNAME}/.hushlogin
+  sudo sed -i 's/\r$//' /etc/wsl.conf
+    
 }
